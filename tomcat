@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# Script to make tomcat tasks quicker to type.
+#
+# Change this for a given environment
+#
+VERSION=6
+
+COMMAND=$1
+
+if  [ $COMMAND = "log" ]; then
+	tail -F /var/log/tomcat$VERSION/catalina.out
+else
+	sudo /sbin/service tomcat$VERSION $1
+fi
