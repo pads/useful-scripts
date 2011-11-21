@@ -2,10 +2,12 @@
 #
 # Script to make tomcat tasks quicker to type.
 #
+BASEDIR=$(dirname $0)
+
 COMMAND=$1
 
 if  [ "$COMMAND" = "log" ]; then
 	tail -F /var/log/tomcat/catalina.out
 else
-	groovy tomcat.groovy $1
+	groovy $BASEDIR/tomcat.groovy $1
 fi
