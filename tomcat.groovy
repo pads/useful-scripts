@@ -1,14 +1,12 @@
 def cli = new CliBuilder(usage: 'tomcat start|stop|restart|status|log')
 cli.start('start tomcat')
 cli.stop('stop tomcat')
-cli.restart('restart tomcat')
 cli.status('check on tomcat running status')
 cli.help('prints usage')
 
 def tomcatService = 'sudo /sbin/service tomcat '
 def start = "${tomcatService} start"
 def stop = "${tomcatService} stop"
-def restart = "${stop} && ${start}"
 def status = "${tomcatService} status"
 
 def command
@@ -20,9 +18,6 @@ switch (options.arguments()[0]) {
         break
     case 'stop':
         command = stop
-        break
-    case 'restart':
-        command = restart
         break
     case 'status':
         command = status
