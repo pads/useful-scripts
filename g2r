@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# Script to easily switch from green to red side 
+# environment and vice-versa.
+#
+
+# This code allows groovy script to run when sourced
+# Thanks to http://stackoverflow.com/q/179231
+# GPL2.0 license is included with this script from the 
+# github repo this belongs to https://github.com/pads/useful-scripts
+#
+SCRIPT_PATH="${BASH_SOURCE[0]}";
+if ([ -h "${SCRIPT_PATH}" ]) then
+  while([ -h "${SCRIPT_PATH}" ]) do SCRIPT_PATH=`readlink "${SCRIPT_PATH}"`; done
+fi
+pushd . > /dev/null
+cd `dirname ${SCRIPT_PATH}` > /dev/null
+SCRIPT_PATH=`pwd`;
+popd  > /dev/null
+
+COMMAND=$1
+
+if [ $# = 1 ]; then
+	sudo env PATH=$PATH groovy $SCRIPT_PATH/g2r.groovy $1
+	if [ $COMMAND = "red" ]; then
+		unset http_proxy https_proxy
+	fi
+	if  [ $COMMAND = "green" ]; then
+		source /etc/profile.d/proxy.sh
+	fi
+else
+	echo "Usage: $0 [green|red|setup]"
+fi
