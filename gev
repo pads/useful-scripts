@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Script to easy the installation exact versions of gems
+#
+if [ $# = 2 ]; then
+	gem install $1 --ignore-dependencies --version $2
+else
+	echo "usage: gev <gem> <version>"
+fi
