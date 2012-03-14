@@ -2,4 +2,4 @@
 SRC=$1
 DEST=$2
 
-cp `svn st $SRC | cut -c 9- | awk -v x="" '{ s=s sprintf(x "%s" x " ", $0) } END { sub(",$", "", s); print(s) }'` $DEST
+cp `svn st $SRC | grep -v ? | cut -c 9- | awk -v x="" '{ s=s sprintf(x "%s" x " ", $0) } END { sub(",$", "", s); print(s) }'` $DEST
