@@ -1,0 +1,2 @@
+#!/bin/sh
+adb forward tcp:6000 tcp:6000
