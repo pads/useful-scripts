@@ -23,7 +23,8 @@ COMMAND=$1
 if [ $# = 1 ]; then
 	sudo env PATH=$PATH groovy $SCRIPT_PATH/g2r.groovy $1
 	if [ $COMMAND = "red" ]; then
-		unset http_proxy https_proxy
+		unset http_proxy
+		unset https_proxy
 	fi
 	if  [ $COMMAND = "green" ]; then
 		source /etc/profile.d/proxy.sh
